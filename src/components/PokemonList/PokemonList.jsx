@@ -35,7 +35,6 @@ function PokemonList(){
                 type:pokemon.types
             }
         })
-        console.log(pokemonData);
          setPokemonList(pokemonData);
     }
     
