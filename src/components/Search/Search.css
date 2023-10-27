@@ -1,0 +1,8 @@
+.search-bar{
+    padding: 30px 18px;
+    min-width: 50%;
+    margin-top: 1rem;
+    border-radius: 10px;
+    border: 1px solid #54b900;
+    outline: none;
+}

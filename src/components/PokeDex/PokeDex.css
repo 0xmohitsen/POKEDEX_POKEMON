@@ -1,0 +1,11 @@
+.PokeDex-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#heading{
+    letter-spacing: 10px;
+    color: #032a36;
+}
