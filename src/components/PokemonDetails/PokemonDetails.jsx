@@ -4,16 +4,18 @@ import './PokemonDetails.css';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import usePokemon from '../../hooks/usePokemon';
+import Pokemon from '../Pokemon/Pokemon';
 
 function PokemonDetails(){
 
     const { id } = useParams();
     // Custom hook
-    const [pokemonDetail] = usePokemon(id);
+    const [pokemonDetail , pokemonListState] = usePokemon(id);
+
     return (
-        pokemonDetail && (
-        <>
+      <>
         <Link className='link-style' to={`/`}><h1 className="PokeDex-redirect">Pokdex</h1></Link>
+        {pokemonDetail && (
         <div className='pokemon-detail-wrapper'>
           <div className='pokemon-detail-name'>
             {pokemonDetail.name}
@@ -35,8 +37,18 @@ function PokemonDetails(){
           <div className='pokemon-types'>
             <h1>Type :</h1> {pokemonDetail.types.map(t => <span className='pokemon-type' key={t.type.name}>{t.type.name}</span> )}
           </div>
+        </div>)}
+
+        <div className='similar-pokemon'>
+          <h2>Similar Pokemons</h2>
+
+          <div className='pokemon-similar-boxes'>
+            {pokemonListState.pokemonList.length > 0 &&
+             pokemonListState.pokemonList.map((pokemon) => <Pokemon name={pokemon.name} url={pokemon.image} key={pokemon.id} id={pokemon.id}/>)
+             }
+          </div>
         </div>
-        </>)
+        </>
     )
 }
 
