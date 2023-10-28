@@ -1,10 +1,14 @@
 // CSS imports 
 import './Search.css';
 
-function Search(){
+import useDebounce from '../../hooks/useDebounce';
+
+function Search({updateSearchTerm}){
+
+    const debounceUpdatedSearch = useDebounce((e) => updateSearchTerm(e.target.value))
     return (
         <>
-        <input className='search-bar' type="text" placeholder="Search for the pokemon you're looking for" />
+        <input className='search-bar' type="text" placeholder="Search for the pokemon you're looking for" onChange={debounceUpdatedSearch}/>
         </>
     )
 }
