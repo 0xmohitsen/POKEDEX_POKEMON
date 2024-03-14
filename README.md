@@ -16,7 +16,7 @@ Pokedex Pokemon is a React-Vite app that provides information about various Poke
 
 - **React-Vite**: Used for building the frontend of the application, providing a fast development environment with hot module replacement.
 - **Axios**: Utilized for making API calls to the public PokeAPI to fetch Pokemon data.
-- **HTML/CSS**: Styled the application using basic HTML and CSS.
+- **CSS**: Styled the application using basic CSS.
 - **JavaScript/JSX**: Developed the frontend logic and components using JavaScript and JSX.
 - **Public PokeAPI**: Integrated the public PokeAPI for fetching Pokemon data such as images, height, weight, and type.
 
@@ -24,17 +24,13 @@ Pokedex Pokemon is a React-Vite app that provides information about various Poke
 
 To get started with Pokedex Pokemon, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/yourusername/pokedex-pokemon.git`
-2. Navigate to the project directory: `cd pokedex-pokemon`
+1. Clone the repository: `git clone https://github.com/Mohitsen11/POKEDEX_POKEMON.git`
+2. Navigate to the project directory: `cd POKEDEX_POKEMON`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
-5. Open your browser and go to `http://localhost:3000` to view the application.
+5. Open your browser and go to `http://localhost:5173` to view the application.
 
 ## Contributing
 
 Contributions to Pokedex Pokemon are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
