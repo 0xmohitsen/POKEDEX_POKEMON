@@ -2,6 +2,10 @@
 
 Pokedex Pokemon is a React-Vite app that provides information about various Pokemon species. It allows users to browse through a list of Pokemon, search for specific Pokemon, view details of individual Pokemon, and see similar Pokemon listings.
 
+## Project Video
+
+https://github.com/Mohitsen11/POKEDEX_POKEMON/assets/114509045/89be80f6-d576-4d7b-813c-11c5275bd484
+
 ## Features
 
 - **Pokemon Listing**: Displays a list of Pokemon with their images and basic information.
