@@ -26,6 +26,7 @@
     border-radius: 8px;
     border: none;
     background-color: #f76b6b;
+    cursor: pointer;
 }
 
 .page-controller button:hover{
