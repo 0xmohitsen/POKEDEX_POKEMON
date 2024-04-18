@@ -13,7 +13,7 @@ function PokemonDetails({pokemonName}){
 
     return (
       <>
-        <Link className='link-style' to={`/`}><h1 className="PokeDex-redirect">Pokdex</h1></Link>
+        <Link className='link-style' to={`/`}><h1 className="PokeDex-redirect">Pokedex</h1></Link>
         {pokemonDetail && (
         <div className='pokemon-detail-wrapper'>
           <div className='pokemon-detail-name'>
