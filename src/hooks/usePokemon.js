@@ -1,59 +1,60 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import downloadPokeDexData from '../utils/downloadPokemons';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import downloadPokeDexData from "../utils/downloadPokemons";
+import { useParams } from "react-router-dom";
 
-function usePokemon(pokemonName){
+function usePokemon(pokemonName) {
+  const { id } = useParams();
+  const POKEMON_DETAIL_URL = "https://pokeapi.co/api/v2/pokemon/";
 
-    const { id } = useParams();
-    const POKEMON_DETAIL_URL = "https://pokeapi.co/api/v2/pokemon/";
+  const [pokemonDetail, setPokemonDetail] = useState(null);
 
-    const [pokemonDetail , setPokemonDetail] = useState(null);
+  const [pokemonListState, setPokemonListState] = useState({
+    pokemonList: [],
+    pokeDexUrl: "",
+    prevUrl: "",
+    nextUrl: "",
+  });
 
-    const [pokemonListState , setPokemonListState] = useState({
+  async function downloadPokemonData(id) {
+    const response = await axios.get(
+      POKEMON_DETAIL_URL + (pokemonName ? pokemonName : id)
+    );
 
-        pokemonList : [],
-        pokeDexUrl : '',
-        prevUrl : '',
-        nextUrl : ''
-    })
+    const pokemon = response.data;
 
-    async function downloadPokemonData(id){
+    setPokemonDetail({
+      name: pokemon.name,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      image: pokemon.sprites.other.dream_world.front_default,
+      types: pokemon.types,
+    });
 
-        const response = await axios.get(POKEMON_DETAIL_URL + ((pokemonName) ? pokemonName : id));
+    const types = response.data.types.map((t) => t.type.name);
+    return types[0];
+  }
 
-        const pokemon = response.data;
+  async function downloadPokeDexDataAndRelated(id) {
+    try {
+      const type = await downloadPokemonData(id);
 
-        setPokemonDetail({
-            name : pokemon.name,
-            height : pokemon.height,
-            weight : pokemon.weight,
-            image : pokemon.sprites.other.dream_world.front_default,
-            types : pokemon.types
-        })
-
-        const types = response.data.types.map(t => t.type.name);
-        return types[0];
+      await downloadPokeDexData(
+        pokemonListState,
+        setPokemonListState,
+        `https://pokeapi.co/api/v2/type/${type}`
+      );
+    } catch (e) {
+      console.log("No pokemon found!");
     }
+  }
 
-    async function downloadPokeDexDataAndRelated(id){
+  useEffect(() => {
+    downloadPokeDexDataAndRelated(id);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [id, pokemonName]);
 
-        try {
-            
-            const type = await downloadPokemonData(id);
-     
-             await downloadPokeDexData(pokemonListState , setPokemonListState , `https://pokeapi.co/api/v2/type/${type}`)
-        } catch (e) {
-            console.log("No pokemon found!");
-        }
-    }
-
-    useEffect(() => {
-        downloadPokeDexDataAndRelated(id);
-        window.scrollTo({top : 0, left : 0, behavior : 'smooth' });
-    }, [id , pokemonName]);
-
-    return [pokemonDetail , pokemonListState];
+  return [pokemonDetail, pokemonListState];
 }
 
 export default usePokemon;
